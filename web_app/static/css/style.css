@@ -1,0 +1,203 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #f5f3ef;
+    color: #1a1a1a;
+    min-height: 100vh;
+}
+
+/* === GRID LAYOUT === */
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+    gap: 0;
+}
+
+.header {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    padding: 2rem 2.5rem 1.5rem;
+    border-bottom: 1.5px solid #c8c2b8;
+    background: #faf9f7;
+}
+
+.header h2 {
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: #2a2a2a;
+}
+
+.form {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    padding: 2rem 2.5rem;
+    border-right: 1px solid #c8c2b8;
+    background: #faf9f7;
+}
+
+.answer {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    padding: 2rem 2.5rem;
+    background: #f5f3ef;
+}
+
+/* === FORM ELEMENTS === */
+
+/* Тип коду — лейбл */
+.form > form > label:first-of-type,
+.form label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b6560;
+    margin-bottom: 0.6rem;
+    margin-top: 1.4rem;
+}
+
+/* Flask-WTF рендерить RadioField як <ul><li> — прибираємо bullets */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Радіокнопки */
+input[type="radio"] {
+    accent-color: #4a4035;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+input[type="radio"] + label,
+li > label {
+    font-size: 0.95rem;
+    color: #2a2a2a;
+    cursor: pointer;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    margin: 0;
+}
+
+/* Textarea */
+textarea {
+    width: 100%;
+    min-height: 180px;
+    padding: 0.75rem 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: #1a1a1a;
+    background: #ffffff;
+    border: 1px solid #c8c2b8;
+    border-radius: 4px;
+    resize: vertical;
+    margin-bottom: 1.2rem;
+    transition: border-color 0.15s;
+    display: block;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #4a4035;
+}
+
+/* Submit кнопка */
+input[type="submit"],
+button[type="submit"] {
+    padding: 0.6rem 2rem;
+    background: #2a2a2a;
+    color: #f5f3ef;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-family: Georgia, serif;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+    background: #4a4035;
+}
+
+/* === РЕЗУЛЬТАТ === */
+.answer h3 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9b3a2e;
+    margin-bottom: 1rem;
+}
+
+.answer p {
+    font-size: 0.95rem;
+    color: #2e6b3e;
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    background: #eaf3e6;
+    border-left: 3px solid #2e6b3e;
+    border-radius: 2px;
+}
+
+.answer ul {
+    flex-direction: column;
+    gap: 0.35rem;
+    margin: 0;
+}
+
+.answer li {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: #7a2820;
+    padding: 0.35rem 0.75rem;
+    background: #fdf0ee;
+    border-left: 3px solid #c8503e;
+    border-radius: 2px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 640px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+
+    .header {
+        grid-column: 1 / 2;
+    }
+
+    .form {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        border-right: none;
+        border-bottom: 1px solid #c8c2b8;
+    }
+
+    .answer {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+    }
+}

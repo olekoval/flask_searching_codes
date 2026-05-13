@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="wrapper">
+    <div class="header">
+        <h2>Форма перевірки наявності кодів у ЕСОЗ</h2>
+    </div>
+    
+    <div class="form">
+        <form method="POST">
+            {{ form.hidden_tag() }}
+    
+            {{ form.codetype.label }}
+            {{ form.codetype() }}
+    
+            {{ form.checkcodes.label }}
+            {{ form.checkcodes() }}
+    
+            {{ form.submit() }}
+        </form>
+    </div>
+    
+    <div class="answer">
+        {% if result %}
+            {% if result.not_found %}
+                <h3>Відсутні у ЕСОЗ</h3>
+                <ul>
+                    {% for code in result.not_found %}
+                        <li>{{ code }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Всі коди присутні у ЕСОЗ</p>
+            {% endif %}
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}
