@@ -4,16 +4,18 @@ from wtforms import RadioField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired
 import pandas as pd
 import re
+import os
 
 
 app = Flask(__name__,
             template_folder='web_app/templates',
             static_folder='web_app/static')
 
-app.config['SECRET_KEY'] = 'dev-key-314'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', os.urandom(24))
 
-# Завантажуємо один файл і групуємо по record_type
-df = pd.read_csv('web_app/static/all_codes.csv')
+csv_path = os.path.join(os.path.dirname(__file__), 'web_app/static/all_codes.csv')
+df = pd.read_csv(csv_path)
+
 VALID_CODES = {
     record_type: set(group['code'].str.strip().str.upper())
     for record_type, group in df.groupby('record_type')
