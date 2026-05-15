@@ -250,6 +250,7 @@ button[type="submit"]:hover {
        border-top: 1px solid #c8c2b8;
        width: 100%;
        box-sizing: border-box;
+      padding: 1rem 1.5rem;
     }
 }
 
