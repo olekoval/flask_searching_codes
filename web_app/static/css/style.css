@@ -15,7 +15,7 @@ body {
 .wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto auto;
     min-height: 100vh;
     gap: 0;
 }
