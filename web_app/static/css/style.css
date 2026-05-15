@@ -225,7 +225,7 @@ button[type="submit"]:hover {
 @media (max-width: 640px) {
     .wrapper {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
+        grid-template-rows: auto auto auto auto;
     }
 
     .header {
@@ -247,6 +247,7 @@ button[type="submit"]:hover {
    .foundcode {
         grid-column: 1 / 2;
         grid-row: 4 / 5;
+       border-top: 1px solid #c8c2b8;
     }
 }
 
