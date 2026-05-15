@@ -221,37 +221,52 @@ button[type="submit"]:hover {
     border-radius: 2px;
 }
 
-/* === RESPONSIVE === */
+/* === RESPONSIVE (MOBILE) === */
 @media (max-width: 640px) {
     .wrapper {
+        /* Змінюємо сітку на одну колонку та чотири рядки */
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto auto;
+        min-height: 100dvh;
     }
 
-    .header {
+    /* Скидаємо позиціонування для всіх дочірніх елементів, 
+       щоб вони займали єдину колонку (від лінії 1 до 2) */
+    .header, 
+    .form, 
+    .answer, 
+    .foundcode {
         grid-column: 1 / 2;
+        width: 100%;
+        border-right: none; /* Прибираємо вертикальний роздільник з десктопу */
+    }
+
+    /* Розставляємо блоки по черзі в рядки */
+    .header {
+        grid-row: 1 / 2;
+        padding: 1.5rem 1.5rem 1rem;
     }
 
     .form {
-        grid-column: 1 / 2;
         grid-row: 2 / 3;
-        border-right: none;
         border-bottom: 1px solid #c8c2b8;
+        padding: 1.5rem;
     }
 
     .answer {
-        grid-column: 1 / 2;
         grid-row: 3 / 4;
+        padding: 1.5rem;
     }
 
-   .foundcode {
-        grid-column: 1 / 2;
+    .foundcode {
         grid-row: 4 / 5;
-       border-top: 1px solid #c8c2b8;
-       width: 100%;
-       box-sizing: border-box;
-      padding: 1rem 1.5rem;
+        border-top: 1px solid #c8c2b8;
+        padding: 1.5rem;
+        background: #f5f3ef;
     }
 
-
-
+    /* Додаткові корекції для зручності на мобільних */
+    textarea {
+        min-height: 150px; /* Трохи зменшуємо висоту поля для малих екранів */
+    }
+}
