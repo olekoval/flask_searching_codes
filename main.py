@@ -21,6 +21,10 @@ VALID_CODES = {
     for record_type, group in df.groupby('record_type')
 }
 
+DECODER = {
+    record_type: dict(zip(group['code'], group['description']))
+    for record_type, group in df.groupby('record_type')
+}
 
 class CodeCheckForm(FlaskForm):
     codetype = RadioField(
@@ -53,11 +57,17 @@ def index():
 
         # Вибираємо потрібний set по типу коду
         valid = VALID_CODES[codetype]
+        decoder = DECODER[codetype]
 
+        
         if input_codes.issubset(valid):
             result = {'not_found': []}
         else:
             result = {'not_found': sorted(input_codes - valid)}
+            
+
+        found_codes = input_codes.intersection(valid)
+        result['found'] = {code: decoder.get(code, '') for code in sorted(found_codes)}    
 
     return render_template('index.html', form=form, result=result)
 

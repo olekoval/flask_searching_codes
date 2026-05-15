@@ -4,6 +4,7 @@
 <div class="wrapper">
     <div class="header">
         <h2>Форма перевірки наявності кодів у ЕСОЗ</h2>
+       <p>Оберіть тип кодів та введіть їх у поле — кожен код з нового рядка, або всі одним рядком через кому чи крапку з комою, або в будь-якій комбінації. Додаток перевірить наявність кодів у реєстрі    ЕСОЗ і покаже знайдені з розшифровкою та відсутні. </p>
     </div>
     
     <div class="form">
@@ -35,5 +36,17 @@
         {% endif %}
     </div>
 
+    <div class="foundcode">
+        {% if result %}
+            {% if result.found %}
+               <h3>Знайдені коди</h3>
+                <ul class="found-list">
+                    {% for code, description in result.found.items() %}
+                        <li><strong>{{ code }}</strong> — {{ description }}</li>
+                    {% endfor %}
+                </ul>
+              {% endif %}
+          {% endif %}
+    </div>  
 </div>
 {% endblock %}
